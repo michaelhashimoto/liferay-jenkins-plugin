@@ -14,3 +14,14 @@ apply plugin: "org.jenkins-ci.jpi"
 jenkinsPlugin {
     jenkinsVersion = "2.164.2"
 }
+
+task deploy {
+    doLast {
+        copy {
+            from "build/libs/liferay-jenkins.hpi"
+            into "/opt/java/jenkins/plugins/"
+        }
+    }
+}
+
+deploy.dependsOn(jpi)
